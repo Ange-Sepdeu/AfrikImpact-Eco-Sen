@@ -32,6 +32,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { selectUserAuthToken, selectUserName, setSignOutState } from '../redux/app/app.slice';
 import { useLocation, useNavigate } from 'react-router-dom';
 import {persistor} from "../redux/store/store";
+import { MiscellaneousServices } from '@mui/icons-material';
+import NavLinkContent from '../components/NavLinkContent';
 
 const drawerWidth = 240;
 
@@ -132,6 +134,10 @@ export default function Admin() {
     {
       name:'Videos',
       icon: <VideoLibraryIcon />
+    }, 
+    {
+      name:'Autres',
+      icon: <MiscellaneousServices />
     }
   ]
 
@@ -227,6 +233,7 @@ export default function Admin() {
         {activeTab==tabs[1].name && <AdminActualite />}
         {activeTab==tabs[2].name && <AdminAgenda />}
         {activeTab==tabs[3].name && <AdminVideo />}
+        {activeTab==tabs[4].name && <NavLinkContent />}
       </Box>
     </Box>
   );

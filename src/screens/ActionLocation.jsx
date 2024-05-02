@@ -2,13 +2,23 @@ import { Breadcrumbs } from '@mui/material'
 import React, { useEffect, useRef, useState } from 'react'
 import { Link, useLocation } from 'react-router-dom'
 import pub3 from "../assets/publication_modifie1.jpg";
-
+import { useDispatch, useSelector } from 'react-redux';
+import * as index from "../redux/app/index.slice";
 
 export default function ActionLocation() {
   const location = useLocation();
-  const {subLinks, selectedLink} = location.state;
+  const dispatch = useDispatch();
+  const {subLinks, selectedLink, navLink} = location.state;
   const scrollToRef = useRef(null);
+  const otherNavbarContent = useSelector(index.selectOtherNavbarContent);
+  const [actionLocation, setActionLocation] = useState()
   useEffect(() => {
+    dispatch(index.getOtherNavbarContent())
+    // return () => null
+  })
+  useEffect(() => {
+    const actionLocation = [...otherNavbarContent].find((others) => others.nav_link === navLink)
+    setActionLocation(actionLocation)
     if (scrollToRef.current) {
       scrollToRef.current.scrollIntoView()
     }
@@ -32,12 +42,12 @@ export default function ActionLocation() {
                 <div></div>
               </Breadcrumbs>
             </div>
-            <div className="mt-20">Ou agissons nous ?</div>
+            <div className="mt-20">{navLink}</div>
           </div>
         </div>
         <img src={pub3} className="h-full" alt="Image Publication" />
       </div>
-     {
+     {/* {
         [...subLinks].map((link, index) => {
           return (
             <div
@@ -47,6 +57,20 @@ export default function ActionLocation() {
             >
               <h2 className='font-bold text-blue-800 text-xl'>{link.label}</h2>
               <p className='text-justify leading-4'>{link.paragraph}</p>
+            </div>
+          )
+        })
+     } */}
+     {
+        actionLocation?.content.map((link, index) => {
+          return (
+            <div
+              key={index}
+              ref={link.content_title === selectedLink.label ? scrollToRef : null}
+              className='mt-7 p-8'
+            >
+              <h2 className='font-bold text-blue-800 text-xl'>{link.content_title}</h2>
+              <p className='text-justify leading-4'>{link.content_text}</p>
             </div>
           )
         })

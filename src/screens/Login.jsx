@@ -44,6 +44,7 @@ export default function Login() {
       setLoading(false);
       setState({...state, open: true})
     }, 2000);
+    setActionResponse({})
   }
 
   return (

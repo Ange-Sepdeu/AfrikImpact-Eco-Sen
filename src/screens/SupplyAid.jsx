@@ -2,12 +2,22 @@ import { Breadcrumbs } from '@mui/material'
 import React, { useEffect, useRef, useState } from 'react'
 import { Link, useLocation } from 'react-router-dom'
 import pub3 from "../assets/publication_modifie1.jpg"
+import { useDispatch, useSelector } from 'react-redux';
+import { getOtherNavbarContent, selectOtherNavbarContent } from '../redux/app/index.slice';
 
 export default function SupplyAid() {
   const location = useLocation();
-  const {subLinks, selectedLink} = location.state;
+  const dispatch = useDispatch();
+  const {subLinks, selectedLink, navLink} = location.state;
   const scrollToRef = useRef(null);
+  const [aid, setAid] = useState()
+  const otherNavbarContent = useSelector(selectOtherNavbarContent);
   useEffect(() => {
+    dispatch(getOtherNavbarContent())
+  })
+  useEffect(() => {
+    const aid = [...otherNavbarContent].find((nav) => nav.nav_link === navLink)
+    setAid(aid)
     if (scrollToRef.current) {
       scrollToRef.current.scrollIntoView()
     }
@@ -31,21 +41,21 @@ export default function SupplyAid() {
                 <div></div>
               </Breadcrumbs>
             </div>
-            <div className="mt-20">Nous soutenir</div>
+            <div className="mt-20">{navLink}</div>
           </div>
         </div>
         <img src={pub3} className="h-full" alt="Image Publication" />
       </div>
      {
-        [...subLinks].map((link, index) => {
+        aid?.content.map((link, index) => {
           return (
             <div
               key={index}
-              ref={link.label === selectedLink.label ? scrollToRef : null}
+              ref={link.content_title === selectedLink.label ? scrollToRef : null}
               className='mt-10 p-8'
             >
-              <h2 className='font-bold text-blue-800 text-3xl'>{link.label}</h2>
-              <p className='text-justify leading-4'>{link.paragraph}</p>
+              <h2 className='font-bold text-blue-800 text-3xl'>{link.content_title}</h2>
+              <p className='text-justify leading-4'>{link.content_text}</p>
             </div>
           )
         })

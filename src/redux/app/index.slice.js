@@ -5,7 +5,8 @@ const initialState = {
     publications: [],
     actualites: [],
     videos: [],
-    agendas: []
+    agendas: [],
+    other_content: []
 }
 
 export const getViewablePublications = createAsyncThunk(
@@ -17,6 +18,20 @@ export const getViewablePublications = createAsyncThunk(
         }
         catch(error) {
             return thunkAPI.rejectWithValue(error.response.data);
+        }
+    }
+)
+
+export const getOtherNavbarContent = createAsyncThunk(
+    "index/getNavContent", async(_, thunkAPI) => {
+        const url = "/api/index/getOtherNavContent";
+        try {
+            const response = await axiosInstance.get(url);
+            console.log(response.data)
+            return response.data;
+        }
+        catch(error) {
+                return thunkAPI.rejectWithValue(error.response.data)
         }
     }
 )
@@ -90,6 +105,13 @@ const indexSlice = createSlice({
         .addCase(getViewableVideos.rejected, (state, action) => {
             console.log("Rejected: ", action);
         })
+        .addCase(getOtherNavbarContent.pending)
+        .addCase(getOtherNavbarContent.fulfilled, (state, action) => {
+            state.other_content = action.payload.data;
+        })
+        .addCase(getOtherNavbarContent.rejected, (state, action) => {
+            console.log("Error, rejected: ", action.payload)
+        })
     }
 })
 
@@ -97,5 +119,6 @@ export const selectPublications = (state) => state.index.publications;
 export const selectActualites = (state) => state.index.actualites;
 export const selectAgendas = (state) => state.index.agendas;
 export const selectVideos = (state) => state.index.videos;
+export const selectOtherNavbarContent = (state) => state.index.other_content;
 
 export default indexSlice.reducer;

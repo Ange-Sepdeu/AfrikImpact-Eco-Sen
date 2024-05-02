@@ -74,7 +74,7 @@ export default function NavBar() {
                                 item.dropdownList.map((elm, index) => (
                                     <div className='hover:border-l-2 hover:border-green-700 px-2 mb-3' key={index}>
                                     <Link 
-                                    state={{selectedLink:elm, subLinks:item.dropdownList}}
+                                    state={{selectedLink:elm, subLinks:item.dropdownList, navLink:item.name}}
                                     to={`/${item.navigate}`}>
                                         {elm.label}
                                     </Link>
@@ -167,7 +167,7 @@ export default function NavBar() {
           <div className='text-center p-4 border-b-2 border-white'>{selectedNavItem?.name}</div>
           {
             selectedNavItem?.dropdownList.map((selected, index) => (
-              <Link state={{selectedLink:selected, subLinks:selectedNavItem?.dropdownList}} to={`/${selectedNavItem?.navigate.toLowerCase()}`}>
+              <Link state={{selectedLink:selected, subLinks:selectedNavItem?.dropdownList, navLink:selectedNavItem?.name}} to={`/${selectedNavItem?.navigate.toLowerCase()}`}>
                         <div 
                     key={index} className='text-md cursor-pointer border-b-2 p-4 border-white'>
                         <div>{selected.label}</div>

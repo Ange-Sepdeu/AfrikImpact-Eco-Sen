@@ -95,7 +95,7 @@ export default function Offres() {
                         }
                     </div>
                     :<div className='flex border border-gray-400 rounded-[7px] flex-row justify-between items-center mt-2 w-[95%] m-auto'>
-                        <input type="text" onChange={(e) => handleSetMontantLibre(e.target.value)} className='p-3 ml-1 outline-none text-[20px] w-[80%]' placeholder='Montant Libre' id="" />
+                        <input type="number" min={1} onChange={(e) => handleSetMontantLibre(e.target.value)} className='p-3 ml-1 outline-none text-[20px] w-[80%]' placeholder='Montant Libre' id="" />
                         <div className='rounded-r-[7px] text-[20px] p-3 text-center text-gray-400 bg-gray-200 border-l border-gray-400 w-[15%]'>$</div>
                     </div>}
                 </div>
@@ -108,7 +108,7 @@ export default function Offres() {
                         <div className='text-[20px] p-3 text-center text-gray-400 bg-gray-200 border-r border-gray-400 w-[15%]'>
                             <EmailOutlined />
                         </div>
-                        <input type="text" onChange={(e) => handleSetMontantLibre(e.target.value)} className='p-3 mr-1 outline-none text-[20px] w-[85%]' placeholder='Email' id="" />
+                        <input type="email" onChange={(e) => handleSetMontantLibre(e.target.value)} className='p-3 mr-1 outline-none text-[20px] w-[85%]' placeholder='Email' id="" />
                 </div>
                 <div className='mt-5 w-10/12 m-auto flex flex-row justify-between items-center'>
                         <select className='p-3 w-[60%] border border-gray-400 outline-none' name="" id="">

@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { getViewableAgendas, selectAgendas } from '../redux/app/index.slice';
 import axiosInstance from '../axiosInstance/axiosInstance';
 import Agenda from '../components/Agenda';
+import { image_prefix } from '../utils/constants';
 
 export default function AgendaComplet() {
   const dispatch = useDispatch();
@@ -16,7 +17,7 @@ export default function AgendaComplet() {
       <div className='flex flex-row p-4 justify-between items-center flex-wrap'>
       {
         [...agendas].map((agenda, index) => {
-          const image_url = axiosInstance.getUri()+"/static/"+agenda.image_url;
+          const image_url = image_prefix+agenda.image_url;
           return (
             <div className='w-full sm:w-full md:w-6/12 lg:w-4/12'>
                   <img width={"90%"} className='m-auto' src={image_url} alt="Agenda Image" />

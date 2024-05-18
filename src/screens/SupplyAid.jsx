@@ -9,7 +9,6 @@ export default function SupplyAid() {
   const location = useLocation();
   const dispatch = useDispatch();
   const {subLinks, selectedLink, navLink} = location.state;
-  const scrollToRef = useRef(null);
   const [aid, setAid] = useState()
   const otherNavbarContent = useSelector(selectOtherNavbarContent);
   useEffect(() => {
@@ -18,9 +17,6 @@ export default function SupplyAid() {
   useEffect(() => {
     const aid = [...otherNavbarContent].find((nav) => nav.nav_link === navLink)
     setAid(aid)
-    if (scrollToRef.current) {
-      scrollToRef.current.scrollIntoView()
-    }
   }, [])
   return (
     <div className='mb-10 mt-20'>
@@ -48,10 +44,10 @@ export default function SupplyAid() {
       </div>
      {
         aid?.content.map((link, index) => {
+          if (link.content_title === selectedLink.label)
           return (
             <div
               key={index}
-              ref={link.content_title === selectedLink.label ? scrollToRef : null}
               className='mt-10 p-8'
             >
               <h2 className='font-bold text-blue-800 text-3xl'>{link.content_title}</h2>

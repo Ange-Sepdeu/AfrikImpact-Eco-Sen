@@ -20,8 +20,8 @@ export default function FooterComponent() {
         <div className='mb-5 text-center w-full sm:w-full md:w-4/12 lg:w-4/12'>
             <div className='uppercase'>Contactez-nous</div>
             <div className='flex text-white text-lg flex-col mt-2'>
-            <a href="tel:+1 873 755 21">+1 873 755 21</a>
-            <a href="mailto:com@afrikimpacteconsen.be">com@afrikimpacteconsen.be</a>
+            <a href="tel:+1 873 755 21">+32 466 35 32 75</a>
+            <a href="mailto:com@afrikimpacteconsen.be">com@afrikimpactecosen.be</a>
             </div>
         </div>
         <div className={`w-full sm:w-full md:w-full lg:w-6/12 text-center`}>
@@ -30,13 +30,21 @@ export default function FooterComponent() {
         </div>
       </div>
       <div className='bg-gray-700 flex flex-row flex-wrap justify-between items-center text-center p-4 text-xl text-gray-100'>
-        <a href="" className='w-full sm:w-full md:w-6/12 lg:w-4/12 mb-5'>Politique de confidentialité</a>
+        <Link to={"/politique-de-confidentialité"} className='w-full sm:w-full md:w-6/12 lg:w-4/12 mb-5'>Politique de confidentialité</Link>
         <div className='flex w-10/12 mb-5 m-auto sm:w-full md:w-5/12 lg:w-4/12 text-gray-400 flex-row justify-between items-center'>
             <Instagram className='cursor-pointer hover:text-gray-500' />
-            <LinkedIn className='cursor-pointer hover:text-gray-500' />
-            <Youtube className='cursor-pointer hover:text-gray-500' />
-            <Twitter className='cursor-pointer hover:text-gray-500' />
-            <Facebook className='cursor-pointer hover:text-gray-500' />
+            <Link target='_blank' className='cursor-pointer hover:text-gray-500' to={"https://www.linkedin.com/company/afrikimpact-eco-sen/"}>
+            <LinkedIn />
+            </Link>
+            <Link target='_blank' className='cursor-pointer hover:text-gray-500' to={"https://www.youtube.com/channel/UCixsNfmu-JgPJncLjq52JfA"}>
+            <Youtube />
+            </Link>
+            <Link target='_blank' className='cursor-pointer hover:text-gray-500' to={"https://twitter.com/AfrikImpact2024"}>
+            <Twitter />
+            </Link>
+            <Link target='_blank' className='cursor-pointer hover:text-gray-500' to={"https://www.facebook.com/profile.php?id=61559077066977"}>
+            <Facebook />
+            </Link>
             <MusicNote className='cursor-pointer bg-gray-400 text-gray-800 rounded-md hover:bg-gray-500' />
         </div>
         <div className='w-10/12 sm:w-full md:w-full md:mb-5 lg:w-4/12 m-auto'> <CopyrightOutlined /> 2024 AfrikImpact Eco-Sen</div> 

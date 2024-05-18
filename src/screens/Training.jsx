@@ -18,9 +18,6 @@ export default function Training() {
   useEffect(() => {
     const training = [...otherNavbarContent].find((nav) => nav.nav_link === navLink);
     setTraining(training);
-    if (scrollToRef.current) {
-      scrollToRef.current.scrollIntoView();
-    }
   }, []);
   return (
     <div className="mb-10 mt-20">
@@ -47,10 +44,10 @@ export default function Training() {
         <img src={pub3} className="h-full" alt="Image Publication" />
       </div>
       {training?.content.map((link, index) => {
+        if (link.content_title === selectedLink.label)
         return (
           <div
             key={index}
-            ref={link.content_title === selectedLink.label ? scrollToRef : null}
             className="mt-7 p-8"
           >
             <h2 className="font-bold text-blue-800 text-2xl">{link.content_title}</h2>

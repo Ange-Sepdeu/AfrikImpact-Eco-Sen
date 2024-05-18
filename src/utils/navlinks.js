@@ -185,3 +185,10 @@ export const DrawerList = [
         ]
     }    
 ]
+
+export const OTHERS = [
+    {
+        label: "Politique de confidentialité",
+        route: "politique-de-confidentialité"
+    }
+]

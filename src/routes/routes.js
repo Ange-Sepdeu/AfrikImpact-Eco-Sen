@@ -13,6 +13,7 @@ import PublicationDetails from "../screens/PublicationDetails";
 import AgendaComplet from "../screens/AgendaComplet";
 import CompleteVideo from "../screens/CompleteVideo";
 import Offres from "../screens/Offres";
+import Politiques from "../screens/Politiques";
 
 export const ROUTES = [
     {
@@ -75,5 +76,9 @@ export const ROUTES = [
     {
         route: "offres",
         element: Offres
+    },
+    {
+        route: "politique-de-confidentialité",
+        element: Politiques
     }
 ]

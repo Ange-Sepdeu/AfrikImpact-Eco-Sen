@@ -19,9 +19,6 @@ export default function ActionLocation() {
   useEffect(() => {
     const actionLocation = [...otherNavbarContent].find((others) => others.nav_link === navLink)
     setActionLocation(actionLocation)
-    if (scrollToRef.current) {
-      scrollToRef.current.scrollIntoView()
-    }
   }, [])
   return (
     <div className='mb-10 mt-20'>
@@ -47,26 +44,12 @@ export default function ActionLocation() {
         </div>
         <img src={pub3} className="h-full" alt="Image Publication" />
       </div>
-     {/* {
-        [...subLinks].map((link, index) => {
-          return (
-            <div
-              key={index}
-              ref={link.label === selectedLink.label ? scrollToRef : null}
-              className='mt-7 p-8'
-            >
-              <h2 className='font-bold text-blue-800 text-xl'>{link.label}</h2>
-              <p className='text-justify leading-4'>{link.paragraph}</p>
-            </div>
-          )
-        })
-     } */}
      {
         actionLocation?.content.map((link, index) => {
+          if(selectedLink.label === link.content_title)
           return (
             <div
               key={index}
-              ref={link.content_title === selectedLink.label ? scrollToRef : null}
               className='mt-7 p-8'
             >
               <h2 className='font-bold text-blue-800 text-xl'>{link.content_title}</h2>

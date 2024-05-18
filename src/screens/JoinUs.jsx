@@ -10,7 +10,6 @@ export default function JoinUs() {
   const dispatch = useDispatch();
   const [joinUs, setJoinUs] = useState()
   const {subLinks, selectedLink, navLink} = location.state;
-  const scrollToRef = useRef(null);
   const otherNavbarContent = useSelector(selectOtherNavbarContent)
   useEffect(() => {
     dispatch(getOtherNavbarContent())
@@ -18,9 +17,6 @@ export default function JoinUs() {
   useEffect(() => {
     const joinUs = [...otherNavbarContent].find(nav => nav.nav_link === navLink);
     setJoinUs(joinUs);
-    if (scrollToRef.current) {
-      scrollToRef.current.scrollIntoView()
-    }
   }, [])
   return (
     <div className='mb-10 mt-20'>
@@ -48,10 +44,10 @@ export default function JoinUs() {
       </div>
      {
         joinUs?.content.map((link, index) => {
+          if (link.content_title === selectedLink.label)
           return (
             <div
               key={index}
-              ref={link.content_title === selectedLink.label ? scrollToRef : null}
               className='mt-10 p-8'
             >
               <h2 className='font-bold text-blue-800 text-xl'>{link.content_title}</h2>

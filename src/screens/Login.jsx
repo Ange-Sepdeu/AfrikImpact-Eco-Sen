@@ -50,7 +50,7 @@ export default function Login() {
   return (
     <>
          <Snackbar 
-      open={actionResponse.message.length>0 && open} 
+      open={actionResponse.message?.length>0 && open} 
       autoHideDuration={6000} 
       anchorOrigin={{vertical, horizontal}} 
       onClose={handleClose}>
